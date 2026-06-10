@@ -1204,7 +1204,7 @@ DROP TABLE IF EXISTS `gm_subsurveys`;
 CREATE TABLE `gm_subsurveys` (
   `surveyId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `subsurveyId` int(10) unsigned NOT NULL DEFAULT 0,
-  `securityRank` int(10) unsigned NOT NULL DEFAULT 0,
+  `rank` int(10) unsigned NOT NULL DEFAULT 0,
   `comment` text NOT NULL,
   PRIMARY KEY (`surveyId`,`subsurveyId`) USING BTREE
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci ROW_FORMAT=DYNAMIC COMMENT='Player System';
@@ -1530,12 +1530,12 @@ DROP TABLE IF EXISTS `guild_member`;
 CREATE TABLE `guild_member` (
   `guildid` int(10) unsigned NOT NULL DEFAULT 0,
   `guid` int(10) unsigned NOT NULL DEFAULT 0,
-  `guildRank` tinyint(3) unsigned NOT NULL DEFAULT 0,
+  `rank` tinyint(3) unsigned NOT NULL DEFAULT 0,
   `pnote` varchar(255) NOT NULL DEFAULT '',
   `offnote` varchar(255) NOT NULL DEFAULT '',
   UNIQUE KEY `key_guid` (`guid`) USING BTREE,
   KEY `idx_guildid` (`guildid`) USING BTREE,
-  KEY `idx_guildid_rank` (`guildid`,`guildRank`) USING BTREE
+  KEY `idx_guildid_rank` (`guildid`,`rank`) USING BTREE
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci ROW_FORMAT=FIXED COMMENT='Guild System';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2073,7 +2073,7 @@ CREATE TABLE `account` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Identifier',
   `username` varchar(32) NOT NULL,
   `sha_pass_hash` varchar(40) NOT NULL,
-  `securityRank` int(10) unsigned NOT NULL DEFAULT 0,
+  `rank` int(10) unsigned NOT NULL DEFAULT 0,
   `sessionkey` longtext DEFAULT NULL,
   `v` longtext DEFAULT NULL,
   `s` longtext DEFAULT NULL,
@@ -2112,7 +2112,7 @@ CREATE TABLE `account` (
   `active` tinyint(3) unsigned NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `idx_username` (`username`) USING BTREE,
-  KEY `idx_gmlevel` (`securityRank`) USING BTREE
+  KEY `idx_gmlevel` (`rank`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci ROW_FORMAT=DYNAMIC COMMENT='Account System';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -5040,7 +5040,7 @@ CREATE TABLE `creature_template` (
   `detection_range` float NOT NULL DEFAULT 20,
   `call_for_help_range` float NOT NULL DEFAULT 5,
   `leash_range` float NOT NULL DEFAULT 0,
-  `creatureRank` tinyint(3) unsigned NOT NULL DEFAULT 0,
+  `rank` tinyint(3) unsigned NOT NULL DEFAULT 0,
   `xp_multiplier` float NOT NULL DEFAULT 1,
   `dmg_min` float NOT NULL DEFAULT 0,
   `dmg_max` float NOT NULL DEFAULT 0,
@@ -6124,7 +6124,7 @@ DROP TABLE IF EXISTS `gm_subsurveys`;
 CREATE TABLE `gm_subsurveys` (
   `surveyId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `subsurveyId` int(10) unsigned NOT NULL DEFAULT 0,
-  `securityRank` int(10) unsigned NOT NULL DEFAULT 0,
+  `rank` int(10) unsigned NOT NULL DEFAULT 0,
   `comment` text NOT NULL,
   PRIMARY KEY (`surveyId`,`subsurveyId`) USING BTREE
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci ROW_FORMAT=DYNAMIC COMMENT='Player System';
@@ -9639,7 +9639,7 @@ CREATE TABLE `spell_chain` (
   `spell_id` mediumint(9) NOT NULL DEFAULT 0,
   `prev_spell` mediumint(9) NOT NULL DEFAULT 0,
   `first_spell` mediumint(9) NOT NULL DEFAULT 0,
-  `spellRank` tinyint(4) NOT NULL DEFAULT 0,
+  `rank` tinyint(4) NOT NULL DEFAULT 0,
   `req_spell` mediumint(9) NOT NULL DEFAULT 0,
   PRIMARY KEY (`spell_id`) USING BTREE
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci ROW_FORMAT=FIXED COMMENT='Spell Additinal Data';
