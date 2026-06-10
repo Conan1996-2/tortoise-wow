@@ -5341,8 +5341,8 @@ bool ChatHandler::HandleInstanceStatsCommand(char* /*args*/)
 bool ChatHandler::HandleGMListFullCommand(char* /*args*/)
 {
     ///- Get the accounts with GM Level >0
-    QueryResult *result = LoginDatabase.Query("SELECT username, rank FROM account"
-                          " WHERE rank > 0");
+    QueryResult *result = LoginDatabase.Query("SELECT username, `rank` FROM account"
+                          " WHERE `rank` > 0");
     if (result)
     {
         SendSysMessage(LANG_GMLIST);
