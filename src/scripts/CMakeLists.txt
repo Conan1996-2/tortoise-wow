@@ -137,12 +137,15 @@ dungeons/molten_core/boss_baron_geddon.cpp
 dungeons/molten_core/boss_garr.cpp
 dungeons/molten_core/boss_gehennas.cpp
 dungeons/molten_core/boss_golemagg.cpp
+dungeons/molten_core/boss_incindis.cpp
 dungeons/molten_core/boss_lucifron.cpp
 dungeons/molten_core/boss_magmadar.cpp
 dungeons/molten_core/boss_majordomo_executus.cpp
 dungeons/molten_core/boss_ragnaros.cpp
 dungeons/molten_core/boss_shazzrah.cpp
 dungeons/molten_core/boss_sulfuron_harbinger.cpp
+dungeons/molten_core/boss_thane.cpp
+dungeons/molten_core/boss_twin_golems.cpp
 dungeons/molten_core/instance_molten_core.cpp
 dungeons/molten_core/molten_core.cpp
 dungeons/molten_core/molten_core.h
@@ -268,6 +271,7 @@ dungeons/wailing_caverns/def_wailing_caverns.h
 dungeons/wailing_caverns/instance_wailing_caverns.cpp
 dungeons/wailing_caverns/wailing_caverns.cpp
 dungeons/zulfarrak/instance_zulfarrak.cpp
+dungeons/zulfarrak/farraki_arena.cpp
 dungeons/zulfarrak/zulfarrak.cpp
 dungeons/zulfarrak/zulfarrak.h
 dungeons/zulgurub/boss_arlokk.cpp
@@ -356,6 +360,7 @@ world/loch_modan.cpp
 world/moonglade.cpp
 world/moonwhisper_coast.cpp
 world/mulgore.cpp
+world/northwind.cpp
 world/orgrimmar.cpp
 world/redridge_mountains.cpp
 world/searing_gorge.cpp

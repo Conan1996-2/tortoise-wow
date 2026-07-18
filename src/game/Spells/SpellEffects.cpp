@@ -7439,6 +7439,11 @@ void Spell::EffectSummonTotem(SpellEffectIndex eff_idx)
 
     pTotem->Summon(m_casterUnit);
 
+    Unit::AuraList const& triggerAuraOnTotemAuras = m_casterUnit->GetAurasByType(SPELL_AURA_TRIGGER_AURA_ON_TOTEMS);
+    for (const auto aura : triggerAuraOnTotemAuras)
+        if (uint32 spellId = aura->GetSpellProto()->EffectTriggerSpell[aura->GetEffIndex()])
+            pTotem->AddAura(spellId, ADD_AURA_PASSIVE, m_casterUnit);
+
     AddExecuteLogInfo(eff_idx, ExecuteLogInfo(pTotem->GetObjectGuid()));
 }
 
@@ -7908,6 +7913,15 @@ void Spell::EffectSelfResurrect(SpellEffectIndex eff_idx)
             mana = uint32(damage / 100.0f * unitTarget->GetMaxPower(POWER_MANA));
     }
 
+    int32 const recoveryMod = unitTarget->GetTotalAuraModifier(SPELL_AURA_MOD_SELF_RESURRECTION_RECOVERY);
+    if (recoveryMod > 0)
+    {
+        health += health * uint32(recoveryMod) / 100;
+        mana += mana * uint32(recoveryMod) / 100;
+        health = std::min<uint32>(health, unitTarget->GetMaxHealth());
+        mana = std::min<uint32>(mana, unitTarget->GetMaxPower(POWER_MANA));
+    }
+
     Player *plr = ((Player*)unitTarget);
     plr->ResurrectPlayer(0.0f);
 
@@ -8064,7 +8078,8 @@ void Spell::EffectPlayerPull(SpellEffectIndex eff_idx)
 
     switch (m_spellInfo->Id)
     {
-    case 28337: // thaddius Magnetic Pull
+    case 28337: // Thaddius - Magnetic Pull
+    case 42036: // Incindis - Quaking Stomp
     {
         float speedXY = float(m_spellInfo->EffectMiscValue[eff_idx]) * 0.1f;
         float speedZ = unitTarget->GetDistance(m_caster) / speedXY * 0.5f * 20.0f;
